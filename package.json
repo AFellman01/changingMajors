@@ -9,11 +9,12 @@
     "start": "node server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run start\" \"npm run client\"",
-    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Cory, Ash, Alex, Brooke",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.1",
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
     "mongoose": "^4.13.9",

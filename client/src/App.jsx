@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LoginForm from './components/Login/LoginForm'
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
 import Home from './components/Home'
-import axios from 'axios'
-
 
 const DisplayLinks = props => {
   if (props.loggedIn) {
@@ -114,9 +111,8 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
       <div className="App">
-        <h1> Changing Majors </h1>
+        <h1>This is the main App component</h1>
         <Header user={this.state.user} />
         {/* LINKS to our different 'pages' */}
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
@@ -135,7 +131,6 @@ class App extends Component {
         <Route exact path="/signup" component={SignupForm} />
         {/* <LoginForm _login={this._login} /> */}
       </div>
-      </Router>
     )
   }
 }
