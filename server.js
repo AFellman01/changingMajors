@@ -1,21 +1,29 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
+// Dependencies
+var express = require("express");
+var mongoose = require('mongoose');
+var bodyParser = require("body-parser");
+var logger = require("morgan");
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
+var app = express();
 
-mongoose.connect(
-	process.env.MONGODB_URI || "mongodb://localhost/mern",
-	{
-		useMongoClient: true
-	}
-  );
+// /e/ Set the app up with morgan, body-parser, and a static folder
+app.use(logger("dev"));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(express.static("public"));
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT);
+
+mongoose.connect('mongodb://localhost/test', { useMongoClient: true });
+mongoose.Promise = global.Promise;
+
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("mongoose connection successful");
+});
+// Listen on port 3000
+app.listen(3000, function() {
+  console.log("App running on port 3000!");
+});
