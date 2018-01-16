@@ -1,21 +1,143 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import LoginForm from './components/Login/LoginForm'
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import SignupForm from './components/SignupForm'
+import Header from './components/Header'
+import Home from './components/Home'
+import axios from 'axios'
 
-class App extends Component {
-  render() {
+
+const DisplayLinks = props => {
+  if (props.loggedIn) {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <nav className="navbar">
+        <ul className="nav">
+          <li className="nav-item">
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="#" className="nav-link" onClick={props._logout}>
+              Logout
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    )
+  } else {
+    return (
+      <nav className="navbar">
+        <ul className="nav">
+          <li className="nav-item">
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
+              Login
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/signup" className="nav-link">
+              Sign Up
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    )
   }
 }
 
-export default App;
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+      user: null
+    }
+    this._logout = this._logout.bind(this)
+    this._login = this._login.bind(this)
+  }
+  componentDidMount() {
+    axios.get('/auth/user').then(response => {
+      console.log(response.data)
+      if (!!response.data.user) {
+        console.log('THERE IS A USER')
+        this.setState({
+          loggedIn: true,
+          user: response.data.user
+        })
+      } else {
+        this.setState({
+          loggedIn: false,
+          user: null
+        })
+      }
+    })
+  }
+
+  _logout(event) {
+    event.preventDefault()
+    console.log('logging out')
+    axios.post('/auth/logout').then(response => {
+      console.log(response.data)
+      if (response.status === 200) {
+        this.setState({
+          loggedIn: false,
+          user: null
+        })
+      }
+    })
+  }
+
+  _login(username, password) {
+    axios
+      .post('/auth/login', {
+        username,
+        password
+      })
+      .then(response => {
+        console.log(response)
+        if (response.status === 200) {
+          // update the state
+          this.setState({
+            loggedIn: true,
+            user: response.data.user
+          })
+        }
+      })
+  }
+
+  render() {
+    return (
+      <Router>
+      <div className="App">
+        <h1> Changing Majors </h1>
+        <Header user={this.state.user} />
+        {/* LINKS to our different 'pages' */}
+        <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
+        {/*  ROUTES */}
+        {/* <Route exact path="/" component={Home} /> */}
+        <Route exact path="/" render={() => <Home user={this.state.user} />} />
+        <Route
+          exact
+          path="/login"
+          render={() =>
+            <LoginForm
+              _login={this._login}
+              _googleSignin={this._googleSignin}
+            />}
+        />
+        <Route exact path="/signup" component={SignupForm} />
+        {/* <LoginForm _login={this._login} /> */}
+      </div>
+      </Router>
+    )
+  }
+}
+
+export default App
