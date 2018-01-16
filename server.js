@@ -24,6 +24,6 @@ db.once('open', function() {
   console.log("mongoose connection successful");
 });
 // Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+app.listen(0, function() {
+  console.log("App running on port 0!");
 });

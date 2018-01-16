@@ -9,7 +9,7 @@ class LoginForm extends Component {
 		this.state = {
 			username: '',
 			password: '',
-			redirectTo: null
+			// redirectTo: null
 		}
 		// this.googleSignin = this.googleSignin.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
