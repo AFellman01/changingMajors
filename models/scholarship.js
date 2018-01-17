@@ -5,8 +5,6 @@ const scholarshipSchema = new Schema({
  name: {type: String, required: true},
  amount: { type: String, required: true },
  due_date: { type: String, required: true},
- keywords: {type: String, required: true},
- // next_action { type: , required: true},
  url: { type: String, required: true }
 });
 const Scholarship = mongoose.model("Scholarship", scholarshipSchema);

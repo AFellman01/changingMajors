@@ -1,4 +1,5 @@
 import React from 'react'
+import Submit from './submit.jsx'
 // TODO - add proptypes
 
 const Home = props => {
@@ -17,6 +18,7 @@ const Home = props => {
 				<p>Current User:</p>
 				<code>
 					{JSON.stringify(props)}
+					<Submit/>
 				</code>
 			</div>
 		)
