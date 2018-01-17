@@ -13,8 +13,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
+app.use(require('./routes/scholarship-routes.js'));
 
-mongoose.connect('mongodb://localhost/test', { useMongoClient: true });
+
+mongoose.connect('mongodb://localhost/changingMajors', { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 
