@@ -14,6 +14,7 @@ app.use(bodyParser.text());
 app.use(express.static("public"));
 
 app.use(require('./routes/scholarship-routes.js'));
+app.use(require)
 
 mongoose.connect('mongodb://localhost/changingMajors', { useMongoClient: true });
 mongoose.Promise = global.Promise;
