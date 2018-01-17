@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Budget</title>
+	<link rel="stylesheet" type="text/css" href="slider.css">
+	<!-- <script src="slider.js"></script> -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('#sample_goal').goalProgress({
+				goalAmount: 600,
+				currentAmount: 400,
+				textBefore: '$',
+				textAfter: ' raised.'
+			});
+		});
+	</script>
+
+</head>
+
+
+<body>
+
+
+
+	<!-- rent -->
+<div class="budgetpanel">
+<h1> My Budget</h1>
+<p>Insert your expected monthly expenses.</p>
+
+	<!-- Sliders -->
+	<div class="slidecontainer">
+		<p>Rent</p>
+  <input type="range" min="0" max="5000" value="0" class="slider" id="myRange">
+  <p>Value $: <span id="demo"></span></p>
+</div>
+	<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
+
+
+<!-- Food -->
+<div class="slidecontainer">
+	<p>Food</p>
+	<input type="range" min="0" max="1000" value="0" class="slider" id="therange">
+	<p>Value $: <span id="num"></span></p>
+</div>
+<script> 
+var sliders = document.getElementById("therange");
+var result = document.getElementById("num");
+result.innerHTML = this.value;
+
+sliders.oninput = function(){
+	result.innerHTML = this.value;
+}
+
+</script>
+
+
+<!-- Transportation -->
+<div class="slidecontainer">
+	<p>Transportation</p>
+	<input type="range" min="0" max="1000" value="0"
+	class="slider" id="yrange">
+	<p>Value $: <span id="transport"></span></p>
+</div>
+<script>
+	var sliderss = document.getElementById("yrange");
+	var answer = document.getElementById("transport");
+	answer.innerHTML = this.value;
+
+	sliderss.oninput = function(){
+		answer.innerHTML = this.value;
+	}
+</script>
+
+
+<!-- Misc -->
+<div class="slidecontainer">
+	<p>Misc</p>
+	<input type="range" min="0" max="1000" value="0" class="slider" id="mrange">
+	<p>Value $: <span id="misc"></span></p>
+</div>
+<script>
+	var sliderm = document.getElementById("mrange");
+	var res = document.getElementById("misc");
+	res.innerHTML = this.value;
+
+	sliderm.oninput = function(){
+
+	res.innerHTML = this.value;
+	}
+</script>
+
+
+<!-- Tuition -->
+<div><p>Tuition</p>
+<input type="text" id="tuition">
+<p>Value $:<span id="money"></span></p>
+</div>
+
+<script>
+	var amttuition = document.getElementById("tuition");
+	var res3 = document.getElementById("money");
+	res3.innerHTML = this.value;
+	amttuition.oninput = function(){
+		res3.innerHTML = this.value;
+	}
+</script>
+
+
+<!-- Total Budget -->
+<div id="totals">
+      <p>Total $:<span id="total"></span></p>
+    </div>
+
+
+<script>
+$(function() {
+  $('input').change(getTotal); // not () - you're not calling the function
+  getTotal(); // initialy call it
+});
+
+function getTotal() {
+  var first = parseInt(slider.value) || 0;
+  var second = parseInt(sliders.value) || 0;
+  var third = parseInt(sliderss.value) || 0;
+  var fourth = parseInt(sliderm.value) || 0;
+  var fifth = parseInt(amttuition.value) || 0;
+
+  document.getElementById("total").innerHTML = first + second + third + fourth + fifth;
+}
+
+</script>
+
+
+<!-- Progress bar -->
+
+<!-- users select whether their program is 3-6 months long( possible toggle) -->
+
+
+
+<div><p>Months In Bootcamp</p>
+<input type="text" id="time">
+<p> Goal $: <span id="ltime"></span></p>
+</div>
+
+<script>
+	var length = document.getElementById("time");
+	var res4 = document.getElementById("ltime");
+	res3.innerHTML = this.value;
+	length.oninput = function(){
+		res4.innerHTML = this.value;
+	}
+</script>
+
+
+
+<!-- take the total from the above function and multiply it by 3 or 6 months -->
+
+
+<script>
+$(function() {
+  $('input').change(calculate); // not () - you're not calling the function
+  calculate(); // initialy call it
+});
+
+function calculate() {
+  var length = parseInt(time.value) || 0;
+  var  goal= parseInt(total.innerHTML) || 0;
+  console.log(length,goal);
+  console.log(total.innerHTML, 'this is total')
+
+  document.getElementById("ltime").innerHTML = length * goal;
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+ <!-- Then the goal is set by either two of these values as a goal for the users to work towards   -->
+
+ <!-- users can input values to add towards their goals -->
+
+
+
+
+
+</body>
+</html>
+
+
