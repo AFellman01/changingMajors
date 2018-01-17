@@ -1,0 +1,77 @@
+
+body {
+    background: url("../../images/viewsubmit.jpg");
+    background-size: 100% 100vh;
+    position: relative;
+    background-repeat: no-repeat;
+    font: 12px/1.5em Abel;
+    color: #6b7b83;
+
+}
+
+button.btn.btn-default {
+  position: absolute;
+  margin-top: 300px;
+  right: 300px;
+  /*padding: 25px 30px 25px 30px;*/
+  font-size: 20px;
+  background-color: inherit;
+
+}
+
+button#submit.btn.btn-default {
+  position: absolute;
+  right: 80px;
+  margin-left: 50px;
+
+}
+
+button.btn-profile {
+  background-color: inherit;
+  color: white;
+  font-size: 20px;
+  border: none;
+  float: right;
+  bottom: 30px;
+
+
+}
+
+button.btn-logout {
+  background-color: inherit;
+  color: white;
+  font-size: 20px;
+  border: none;
+  float: right;
+  bottom: 30px;
+}
+
+@import 'https://fonts.googleapis.com/css?family=Comfortaa:300,400,700&subset=cyrillic,cyrillic-ext,latin-ext';
+
+h1 {text-align:center;font-family:comfortaa;font-weight:900;font-size:3em;color:white;text-shadow:0em 0.05em 0 rgba(0,0,0,0.35)}
+button {color:inherit;background:transparent;border-width:2px;border-style: solid;border-color: #454545;position:relative;margin:1em;display:inline-block;padding:0.5em 1em;transition:all 0.3s ease-in-out;text-align:center;
+font-family:comfortaa;font-weight:bold}
+button:before, button:after {content:'';display:block;position:absolute;border-color:none;box-sizing:border-box;border-style:solid;width:1em;height:1em;transition:all 0.3s ease-in-out}
+button:before {top:-6px;left:-6px;border-width:2px 0 0 2px;z-index:5;}
+button:after {bottom:-6px;right:-6px;border-width:0 2px 2px 0;}
+button:hover:before, button:hover:after {width:calc(100% + 12px);
+  height:calc(100% + 12px);border-color:white}
+button:hover {color:white;background-color:inherit;;border-color:white}
+.panel {max-width:960px;text-align:center;position:relative;margin:auto;}
+
+.borderless button {border-color:rgba(0,0,0,0);color:#999}
+.borderless button:hover {border-color:white;background-color:transparent;color:white;}
+.borderless button:before, .borderless button:after {border-color:transparent;}
+.borderless button:hover:before, .borderless button:hover:after {width:calc(100% + 12px); height:calc(100% + 12px);border-color:white}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   height: 40px;
+   background-color: grey;
+   color: white;
+   text-align: center;
+   background: transparent !important;
+}

@@ -12,7 +12,9 @@ app.use(logger("dev"));
 app.use(bodyParser.json({limit: '1gb'}));
 app.use(bodyParser.urlencoded({ extended: true, limit: '1gb' }));
 app.use(bodyParser.text());
-app.use(express.static("public"));
+app.use(express.static('/src/components'));
+
+
 
 app.use(require('./routes/scholarship-routes.js'));
 app.use(require)
