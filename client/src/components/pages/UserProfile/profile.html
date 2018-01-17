@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+
+    <title>My Budget</title>
+
+  	<script src="./js/slider.js"></script>
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script type="text/javascript">
+  		$(document).ready(function(){
+  			$('#sample_goal').goalProgress({
+  				goalAmount: 600,
+  				currentAmount: 400,
+  				textBefore: '$',
+  				textAfter: ' raised.'
+  			});
+  		});
+  	</script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/slider.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/profile.css"/> -->
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Changing Majors</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Scholarships</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <body>
+      <div class="budgetpanel">
+      <h1> My Budget</h1>
+      <h5>Insert your expected monthly expenses.</h5>
+      <br />
+        <!-- Sliders -->
+        <div class="slidecontainer">
+          <h4>Rent</h4>
+        <input type="range" min="0" max="5000" value="0" class="slider" id="myRange">
+        <h4>Value $: <span id="demo"></span></h4>
+      </div>
+        <script>
+      var slider = document.getElementById("myRange");
+      var output = document.getElementById("demo");
+      output.innerHTML = slider.value;
+
+      slider.oninput = function() {
+        output.innerHTML = this.value;
+      }
+      </script>
+
+      <br />
+      <!-- Food -->
+      <div class="slidecontainer">
+        <h4>Food</h4>
+        <input type="range" min="0" max="1000" value="0" class="slider" id="therange">
+        <h4>Value $: <span id="num"></span></h4>
+      </div>
+      <script>
+      var sliders = document.getElementById("therange");
+      var result = document.getElementById("num");
+      result.innerHTML = this.value;
+
+      sliders.oninput = function(){
+        result.innerHTML = this.value;
+      }
+
+      </script>
+
+      <br />
+      <!-- Transportation -->
+      <div class="slidecontainer">
+        <h4>Transportation</h4>
+        <input type="range" min="0" max="1000" value="0"
+        class="slider" id="yrange">
+        <h4>Value $: <span id="transport"></span></h4>
+      </div>
+      <script>
+        var sliderss = document.getElementById("yrange");
+        var answer = document.getElementById("transport");
+        answer.innerHTML = this.value;
+
+        sliderss.oninput = function(){
+          answer.innerHTML = this.value;
+        }
+      </script>
+
+      <br />
+      <!-- Misc -->
+      <div class="slidecontainer">
+        <h4>Misc</h4>
+        <input type="range" min="0" max="1000" value="0" class="slider" id="mrange">
+        <h4>Value $: <span id="misc"></span></h4>
+      </div>
+      <script>
+        var sliderm = document.getElementById("mrange");
+        var res = document.getElementById("misc");
+        res.innerHTML = this.value;
+
+        sliderm.oninput = function(){
+
+        res.innerHTML = this.value;
+        }
+      </script>
+
+      <br />
+      <!-- Tuition -->
+      <div><h4>Tuition</h4>
+      <input type="text" id="tuition">
+      <h4>Value $:<span id="money"></span></h4>
+      </div>
+
+      <script>
+        var amttuition = document.getElementById("tuition");
+        var res3 = document.getElementById("money");
+        res3.innerHTML = this.value;
+        amttuition.oninput = function(){
+          res3.innerHTML = this.value;
+        }
+      </script>
+
+      <br />
+      <!-- Total Budget -->
+      <div id="totals">
+            <h4>Total $:<span id="total"></span></h4>
+          </div>
+
+
+      <script>
+      $(function() {
+        $('input').change(getTotal); // not () - you're not calling the function
+        getTotal(); // initialy call it
+      });
+
+      function getTotal() {
+        var first = parseInt(slider.value) || 0;
+        var second = parseInt(sliders.value) || 0;
+        var third = parseInt(sliderss.value) || 0;
+        var fourth = parseInt(sliderm.value) || 0;
+        var fifth = parseInt(amttuition.value) || 0;
+
+        document.getElementById("total").innerHTML = first + second + third + fourth + fifth;
+      }
+
+      </script>
+
+
+      <!-- Progress bar -->
+
+      <!-- users select whether their program is 3-6 months long( possible toggle) -->
+
+
+      <br />
+      <div><h4>Months In Bootcamp</h4>
+      <input type="text" id="time">
+      <h4> Goal $: <span id="ltime"></span></h4>
+      </div>
+
+      <script>
+        var length = document.getElementById("time");
+        var res4 = document.getElementById("ltime");
+        res3.innerHTML = this.value;
+        length.oninput = function(){
+          res4.innerHTML = this.value;
+        }
+      </script>
+
+
+      <!-- take the total from the above function and multiply it by 3 or 6 months -->
+
+
+      <script>
+      $(function() {
+        $('input').change(calculate); // not () - you're not calling the function
+        calculate(); // initialy call it
+      });
+
+      function calculate() {
+        var length = parseInt(time.value) || 0;
+        var  goal= parseInt(total.innerHTML) || 0;
+        console.log(length,goal);
+        console.log(total.innerHTML, 'this is total')
+
+        document.getElementById("ltime").innerHTML = length * goal;
+      }
+
+      </script>
+    </div>
+  <br><br>
+
+          <main class="container pt-2">
+          <div class="card mb-6">
+            <h2>Saved Scholarships</h2>
+              <!-- <div class="card-header">Fearures</div> -->
+              <div class="card-block p-0">
+                  <table class="table table-bordered table-sm m-0">
+                      <thead class="">
+                          <tr>
+                              <th>Done</th>
+                              <th>Name</th>
+                              <th>Scholarship Amount</th>
+                              <th>Application Due Date</th>
+                              <th>Website</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                  </label>
+                              </td>
+                              <td>John Lilki</td>
+                              <td>September 14, 2013</td>
+                              <td>jhlilk22@yahoo.com</td>
+                              <td>No</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                  </label>
+                              </td>
+                              <td>John Lilki</td>
+                              <td>September 14, 2013</td>
+                              <td>jhlilk22@yahoo.com</td>
+                              <td>No</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                  </label>
+                              </td>
+                              <td>John Lilki</td>
+                              <td>September 14, 2013</td>
+                              <td>jhlilk22@yahoo.com</td>
+                              <td>No</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                  </label>
+                              </td>
+                              <td>John Lilki</td>
+                              <td>September 14, 2013</td>
+                              <td>jhlilk22@yahoo.com</td>
+                              <td>No</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                  </label>
+                              </td>
+                              <td>John Lilki</td>
+                              <td>September 14, 2013</td>
+                              <td>jhlilk22@yahoo.com</td>
+                              <td>No</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                  </label>
+                              </td>
+                              <td>John Lilki</td>
+                              <td>September 14, 2013</td>
+                              <td>jhlilk22@yahoo.com</td>
+                              <td>No</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <div class="card-footer p-0">
+                  <nav aria-label="...">
+                      <ul class="pagination justify-content-end mt-3 mr-3">
+                          <li class="page-item disabled">
+                              <span class="page-link">Previous</span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item active">
+                              <span class="page-link">2<span class="sr-only">(current)</span>
+                              </span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                              <a class="page-link" href="#">Next</a>
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+
+<br><br>
+
+     <!-- Then the goal is set by either two of these values as a goal for the users to work towards   -->
+
+     <!-- users can input values to add towards their goals -->
+
+
+
+
+  </body>
+</html>

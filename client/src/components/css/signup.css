@@ -1,0 +1,44 @@
+
+body {
+    background: url("../../images/loginsignup.jpg");
+    background-repeat: no-repeat;
+    /*position: relative;*/
+    background-size: 100% 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+
+h2 {
+  color: inherit;
+  text-align: center;
+
+}
+
+.signup {
+  color: white;
+}
+
+.container {
+  float: right;
+  margin-top: 60px;
+
+
+}
+
+p {
+  font-size: 15px;
+  color: black;
+
+}
+
+form {
+    max-width: 500px;
+    padding: 10px 20px;
+    background: #f4f7f8;
+    margin: 10px auto;
+    padding: 20px;
+    background: #f4f7f8;
+    border-radius: 8px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
