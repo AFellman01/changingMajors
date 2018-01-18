@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LoginForm from './components/Login/LoginForm'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import SignupForm from './components/SignupForm'
-import Header from './components/Header'
-import Home from './components/Home'
-import axios from 'axios'
+// import Header from './components/Header'
+// import Home from './components/Home'
+import axios from 'axios';
 
 
 const DisplayLinks = props => {
@@ -117,22 +115,22 @@ class App extends Component {
       <Router>
       <div className="App">
         <h1> Changing Majors </h1>
-        <Header user={this.state.user} />
+        {/*<Header user={this.state.user} />*/}
         {/* LINKS to our different 'pages' */}
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
         {/*  ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
-        <Route exact path="/" render={() => <Home user={this.state.user} />} />
-        <Route
-          exact
-          path="/login"
-          render={() =>
-            <LoginForm
-              _login={this._login}
-              _googleSignin={this._googleSignin}
-            />}
-        />
-        <Route exact path="/signup" component={SignupForm} />
+        {/*<Route exact path="/" render={() => <Home user={this.state.user} />} />*/}
+        {/*<Route
+          //exact
+          //path="/login"
+          //render={() =>
+            //<LoginForm
+              //_login={this._login}
+            //  _googleSignin={this._googleSignin}
+          //  />}
+        >*/}
+        {/*<Route exact path="/signup" component={SignupForm} />*/}
         {/* <LoginForm _login={this._login} /> */}
       </div>
       </Router>
