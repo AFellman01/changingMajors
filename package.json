@@ -24,6 +24,9 @@
     "mongoose-data-seed": "^1.0.4",
     "morgan": "^1.9.0",
     "path": "^0.12.7",
+    "react-number-input": "^15.5.1",
+    "react-numeric-input": "^2.2.3",
+    "react-rangeslider": "^2.2.0",
     "react-scripts": "^1.1.0"
   }
 }
