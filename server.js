@@ -6,24 +6,20 @@ const logger = require("morgan");
 require('./models/User.js');
 const passport = require('passport');
 const GitHubStrategy = require('passport-github').GitHubStrategy;
-const keys = require('./config/keys');
-
-const express = require('express');
+const keys = require('./config/keys.js');
+const apiroutes = require("./routes/apiroutes.js");
 require('./services/passport');
 const app = express();
 require('./routes/authRoutes')(app);
 const PORT = process.env.PORT || 3001;
 
-mongoose.connect(
-	process.env.MONGODB_URI || "mongodb://localhost/changingMajors",
-	{
-		useMongoClient: true
-	}
-
-	);
-// const apiroutes = require("./routes/apiroutes.js");
-
 //Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(require('./routes/authRoutes.js'));
+app.use(require)
+
 passport.use(new GitHubStrategy({
 	clientID: keys.githubClientID,
 	clientSecret: keys.githubClientSecret,
@@ -45,14 +41,24 @@ app.get('/auth/github/callback',
 		res.redirect('/');
 	});
 
+
+app.use(require('./routes/authRoutes.js'));
+
 // /e/ Set the app up with morgan, body-parser, and a static folder
+mongoose.connect(
+	process.env.MONGODB_URI || "mongodb://localhost/changingMajors",
+	{
+		useMongoClient: true
+	}
+
+	);
+
+
 app.use(logger("dev"));
 app.use(bodyParser.json({limit: '1gb'}));
 app.use(bodyParser.urlencoded({ extended: true, limit: '1gb' }));
 app.use(bodyParser.text());
 app.use(express.static('/src/components'));
-
-
 
 app.use(require('./routes/scholarship-routes.js'));
 app.use(require)
@@ -68,7 +74,7 @@ db.once('open', function() {
 });
 
 
-//Build
+//Build for Heroku
 if(process.env.NODE_ENV === 'production') {
 	const path = require('path')
 	console.log('YOU ARE IN THE PRODUCTION ENV')
@@ -81,7 +87,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 
-// Listen on port 3000
+// Listen on port 3001
 app.listen(3001, function() {
   console.log("App running on port 3001!");
 });
